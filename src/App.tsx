@@ -1,24 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.scss";
+import UniversalFileUploaderModal from "./components/UniversalFileUploaderModal";
 
 function App() {
+  const [show, setShow] = useState<boolean>(false);
+
+  const handleClose = () => setShow(false);
+  const handleOpen = () => setShow(true);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h2>Image uploader</h2>
+      <button className="btn btn-primary" onClick={handleOpen}>
+        UploadImage
+      </button>
+      <UniversalFileUploaderModal
+        show={show}
+        handleClose={handleClose}
+        size="xl"
+        header="Upload Fills"
+        mimeTypes={["image/png", "image/jpg"]}
+        allowMultiple={true}
+      />
     </div>
   );
 }
