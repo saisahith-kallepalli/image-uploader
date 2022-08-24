@@ -3,6 +3,7 @@ import { Button, Modal } from "react-bootstrap";
 import localImage from "./../../images/desktop-solid.svg";
 import driveImage from "./../../images/icons8-google-drive-color/icons8-google-drive-96.svg";
 import dropboxImage from "./../../images/icons8-dropbox-color/icons8-dropbox-96.svg";
+import UploadTypes from "../UploadTypes";
 type Props = {
   show: boolean;
   handleClose: () => void;
@@ -14,7 +15,12 @@ type Props = {
 
 export const UniversalFileUploaderModal = (props: Props) => {
   const { show, handleClose, size, header, mimeTypes } = props;
-  const selectionType: Array<any> = [
+  const selectionType: Array<{
+    name: string;
+    image: any;
+    color?: string;
+    title: string;
+  }> = [
     {
       name: "localFileUpload",
       image: localImage,
@@ -44,7 +50,9 @@ export const UniversalFileUploaderModal = (props: Props) => {
         <Modal.Title>{header}</Modal.Title>
       </Modal.Header>
       <Modal.Body className="d-flex justify-content-between">
-        <div>type of selection</div>
+        <div>
+          <UploadTypes selectionType={selectionType} />
+        </div>
         <div>select files</div>
         <div>selected files</div>
       </Modal.Body>
