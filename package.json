@@ -6,16 +6,22 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/file-saver": "^2.0.5",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.11.56",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "bootstrap": "^5.2.0",
+    "file-saver": "^2.0.5",
     "node-sass": "^7.0.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
+    "react-cloud-chooser": "^1.0.0",
     "react-dom": "^18.2.0",
+    "react-dropbox-chooser": "^0.0.5",
+    "react-file-picker-providers": "^1.15.0",
     "react-google-drive-picker": "^1.2.0",
+    "react-icons": "^4.4.0",
     "react-scripts": "5.0.1",
     "sass": "^1.54.5",
     "typescript": "^4.7.4",
@@ -44,5 +50,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-dropbox-chooser-component": "^1.0.0"
   }
 }

@@ -8,7 +8,7 @@ function App() {
   const handleClose = () => setShow(false);
   const handleOpen = () => setShow(true);
   const onUpload = (fileValues: Array<File>) => {
-    setUploadedFiles((prev) => [...prev, ...fileValues]);
+    setUploadedFiles([...fileValues]);
   };
   return (
     <div className="App">
@@ -19,6 +19,7 @@ function App() {
       <UniversalFileUploaderModal
         show={show}
         handleClose={handleClose}
+        handleOpen={handleOpen}
         size="xl"
         header="Upload Fills"
         mimeTypes={[

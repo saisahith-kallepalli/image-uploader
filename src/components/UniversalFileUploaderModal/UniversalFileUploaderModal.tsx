@@ -11,6 +11,7 @@ import { GoogleFileSelector } from "../GoogleFileSelector";
 type Props = {
   show: boolean;
   handleClose: () => void;
+  handleOpen: () => void;
   size: "sm" | "lg" | "xl" | undefined;
   header: string;
   mimeTypes: Array<string>;
@@ -23,6 +24,7 @@ export const UniversalFileUploaderModal = (props: Props) => {
   const {
     show,
     handleClose,
+    handleOpen,
     size,
     header,
     mimeTypes,
@@ -84,11 +86,21 @@ export const UniversalFileUploaderModal = (props: Props) => {
           />
         </div>
         <div className="w-50 h-100">
-          {/* <LocalFileUploader onUpload={onUpload} mimeTypes={mimeTypes} /> */}
-          <GoogleFileSelector />
+          {/* <LocalFileUploader
+            onUpload={onUpload}
+            mimeTypes={mimeTypes}
+            uploadedFiles={uploadedFiles}
+          /> */}
+          <GoogleFileSelector
+            mimeTypes={mimeTypes}
+            handleOpen={handleOpen}
+            handleClose={handleClose}
+            onUpload={onUpload}
+            uploadedFiles={uploadedFiles}
+          />
         </div>
         <div className="w-25">
-          <ShowUploaded uploadedFiles={uploadedFiles} />
+          <ShowUploaded uploadedFiles={uploadedFiles} onUpload={onUpload} />
         </div>
       </Modal.Body>
 
