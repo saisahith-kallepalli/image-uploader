@@ -1,3 +1,1 @@
-import { UploadTypes } from "./UploadTypes";
-
-export default UploadTypes;
+export { UploadTypes } from "./UploadTypes";
