@@ -8,6 +8,7 @@ import "./UniversalFileUploaderModal.scss";
 import { LocalFileUploader } from "../LocalFileUploader";
 import { ShowUploaded } from "../ShowUploaded";
 import { GoogleFileSelector } from "../GoogleFileSelector";
+import { DropboxFileSelector } from "../DropboxFileSelector";
 type Props = {
   show: boolean;
   handleClose: () => void;
@@ -91,10 +92,14 @@ export const UniversalFileUploaderModal = (props: Props) => {
             mimeTypes={mimeTypes}
             uploadedFiles={uploadedFiles}
           /> */}
-          <GoogleFileSelector
+          {/* <GoogleFileSelector
             mimeTypes={mimeTypes}
             handleOpen={handleOpen}
             handleClose={handleClose}
+            onUpload={onUpload}
+            uploadedFiles={uploadedFiles}
+          /> */}
+          <DropboxFileSelector
             onUpload={onUpload}
             uploadedFiles={uploadedFiles}
           />
