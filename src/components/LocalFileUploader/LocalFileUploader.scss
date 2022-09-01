@@ -1,7 +1,13 @@
-$color-lightGray: #7a7676;
+$color-lightGray: #98a2b3;
 .local-file-container {
-  min-height: 500px;
-  h2 {
+  width: 100%;
+  height: 100%;
+  border: 2px dashed $color-lightGray;
+  border-radius: 20px;
+  padding: 50px;
+  h4 {
+    padding-top: 20px;
+    padding-bottom: 20px;
     color: $color-lightGray;
   }
 }

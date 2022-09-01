@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import "./LocalFileUploader.scss";
+import uploadImage from "./../../images/upload-cloud.png";
 export type LocalFileUploaderProps = {
   onUpload: (fileValues: Array<File>) => void;
   mimeTypes: Array<string>;
@@ -51,7 +52,8 @@ export const LocalFileUploader = (props: LocalFileUploaderProps) => {
       onDragLeave={handleDrag}
       onDragOver={handleDrag}
       onDrop={handleDrop}>
-      <h2>Drag and Drop File</h2>
+      <img src={uploadImage} alt="Upload Image" />
+      <h4>Drag and drop file here to upload</h4>
       <label htmlFor="file-upload">
         <input
           type="file"
@@ -62,7 +64,7 @@ export const LocalFileUploader = (props: LocalFileUploaderProps) => {
           className="d-none"
           onChange={onChangeUpload}
         />
-        <div className="btn btn-primary m-auto">Choose your File</div>
+        <div className="btn btn-success m-auto">Import your file</div>
       </label>
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-// import DropboxChooser from "react-dropbox-chooser-component";
 import { useDropboxChooser } from "use-dropbox-chooser";
-
+import DropBoxImage from "./../../images/icons8-dropbox-color/icons8-dropbox-144.svg";
+import "./DropboxFileSelector.scss";
 export type DropboxFileSelectorProps = {
   onUpload: (fileValues: Array<File>) => void;
   uploadedFiles: Array<File>;
@@ -31,8 +31,13 @@ export const DropboxFileSelector = (props: DropboxFileSelectorProps) => {
     },
   });
   return (
-    <div>
-      <button type="button" onClick={open} disabled={isOpen}>
+    <div className="DropboxFileSelector-container">
+      <img src={DropBoxImage} alt="DropBoxImage" />
+      <button
+        type="button"
+        onClick={open}
+        disabled={isOpen}
+        className="btn btn-success">
         {" "}
         Upload From DropBox
       </button>

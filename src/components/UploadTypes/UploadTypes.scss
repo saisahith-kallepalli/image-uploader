@@ -1,4 +1,17 @@
+$color-background-1: #f1fff8;
 .upload-type-image-size {
   height: 86px;
   width: 86px;
+}
+%upload-type-custom-button {
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+}
+.upload-type-background-color {
+  @extend %upload-type-custom-button;
+  background-color: $color-background-1;
+}
+.upload-type-background-color-normal {
+  @extend %upload-type-custom-button;
 }

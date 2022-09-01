@@ -11,8 +11,10 @@
     "@types/node": "^16.11.56",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
+    "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
     "file-saver": "^2.0.5",
+    "gapi-client": "^0.0.3",
     "google-auth-library": "^8.4.0",
     "googleapis": "^107.0.0",
     "node-sass": "^7.0.1",
@@ -24,6 +26,7 @@
     "react-file-picker-providers": "^1.15.0",
     "react-gapi": "^1.0.2",
     "react-google-drive-picker": "^1.2.0",
+    "react-google-picker": "^0.1.0",
     "react-icons": "^4.4.0",
     "react-scripts": "5.0.1",
     "sass": "^1.54.5",
@@ -56,6 +59,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-google-picker": "^0.1.0",
     "react-dropbox-chooser-component": "^1.0.0"
   }
 }

@@ -1,7 +1,8 @@
 import React from "react";
 import Badge from "react-bootstrap/Badge";
 import "./ShowUploaded.scss";
-import { MdOutlineCancel } from "react-icons/md";
+import { MdClose } from "react-icons/md";
+import { ProgressBar } from "react-bootstrap";
 export type ShowUploadedProps = {
   uploadedFiles: Array<File>;
   onUpload: (fileValues: Array<File>) => void;
@@ -25,15 +26,16 @@ export const ShowUploaded = (props: ShowUploadedProps) => {
             src={URL.createObjectURL(each)}
             alt={each.name}
           />
-          <h6 className="show-uploaded-font-fit">{each.name}</h6>
-          <Badge
-            bg=""
-            text="dark"
-            pill={true}
-            className=" btn show-uploaded-badge"
-            onClick={() => onClickRemoveFromSelected(index)}>
-            <MdOutlineCancel />
-          </Badge>
+          <div className="show-uploaded-box">
+            <div className="show-uploaded-name-box">
+              <h6 className="show-uploaded-font-fit ">{each.name}</h6>
+
+              <MdClose
+                className="show-uploaded-close"
+                onClick={() => onClickRemoveFromSelected(index)}
+              />
+            </div>
+          </div>
         </div>
       ))}
     </div>

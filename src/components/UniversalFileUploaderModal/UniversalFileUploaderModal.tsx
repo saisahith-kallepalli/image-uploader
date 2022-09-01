@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import localImage from "./../../images/desktop-solid.svg";
+import localImage from "./../../images/monitor.png";
 import driveImage from "./../../images/icons8-google-drive-color/icons8-google-drive-96.svg";
 import dropboxImage from "./../../images/icons8-dropbox-color/icons8-dropbox-96.svg";
 import { UploadTypes } from "../UploadTypes";
@@ -84,9 +84,32 @@ export const UniversalFileUploaderModal = (props: Props) => {
           <UploadTypes
             selectionType={selectionType}
             onClickChangeTypeOfUpload={onClickChangeTypeOfUpload}
+            typeOfUpload={typeOfUpload}
           />
         </div>
         <div className="w-50 h-100">
+          {typeOfUpload === "localFileUpload" ? (
+            <LocalFileUploader
+              onUpload={onUpload}
+              mimeTypes={mimeTypes}
+              uploadedFiles={uploadedFiles}
+            />
+          ) : typeOfUpload === "GoogleDriveUpload" ? (
+            <GoogleFileSelector
+              mimeTypes={mimeTypes}
+              handleOpen={handleOpen}
+              handleClose={handleClose}
+              onUpload={onUpload}
+              uploadedFiles={uploadedFiles}
+            />
+          ) : typeOfUpload === "DropBoxUpload" ? (
+            <DropboxFileSelector
+              onUpload={onUpload}
+              uploadedFiles={uploadedFiles}
+            />
+          ) : (
+            ""
+          )}
           {/* <LocalFileUploader
             onUpload={onUpload}
             mimeTypes={mimeTypes}
@@ -99,10 +122,10 @@ export const UniversalFileUploaderModal = (props: Props) => {
             onUpload={onUpload}
             uploadedFiles={uploadedFiles}
           /> */}
-          <DropboxFileSelector
+          {/* <DropboxFileSelector
             onUpload={onUpload}
             uploadedFiles={uploadedFiles}
-          />
+          /> */}
         </div>
         <div className="w-25">
           <ShowUploaded uploadedFiles={uploadedFiles} onUpload={onUpload} />

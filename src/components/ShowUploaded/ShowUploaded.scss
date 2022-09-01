@@ -1,3 +1,4 @@
+$color-gray: #98a2b3;
 .show-uploaded-image-size {
   height: 96px;
   width: 96px;
@@ -15,6 +16,7 @@
   border-radius: 10px;
 }
 .show-uploaded-main-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -23,4 +25,19 @@
 .show-uploaded-badge {
   height: 25px;
   width: 25px;
+}
+.show-uploaded-name-box {
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-shrink: 1;
+}
+.show-uploaded-box {
+  width: 100%;
+}
+.show-uploaded-close {
+  font-size: 20px;
+  color: #98a2b3;
+  cursor: pointer;
 }

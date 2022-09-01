@@ -7,19 +7,27 @@ type Props = {
     color?: string;
     title: string;
   }>;
+  typeOfUpload: string;
   onClickChangeTypeOfUpload: (type: string) => void;
 };
 
 export const UploadTypes = (props: Props) => {
-  const { selectionType, onClickChangeTypeOfUpload } = props;
+  const { selectionType, onClickChangeTypeOfUpload, typeOfUpload } = props;
+  {
+    console.log(typeOfUpload);
+  }
   return (
-    <div className="d-flex flex-column">
+    <div className="d-flex flex-column align-items-center">
       {selectionType.map((item, index) => {
         return (
           <div
             key={item.type}
             onClick={() => onClickChangeTypeOfUpload(item.type)}
-            className="btn">
+            className={`${
+              typeOfUpload === item.type
+                ? "upload-type-background-color"
+                : "upload-type-background-color-normal"
+            }`}>
             <img
               src={item.image}
               alt={item.title}
