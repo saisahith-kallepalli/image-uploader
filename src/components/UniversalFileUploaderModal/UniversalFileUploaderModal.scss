@@ -1,5 +1,23 @@
+$color-border: #f2f4f7;
 .UniversalFileUploaderModel-type-select {
   width: 20%;
+  height: 500px;
+
+  border-right: 1px solid $color-border;
+}
+.UniversalFileUploaderModel-selection-file {
+  width: 45%;
+  margin: 10px;
+}
+.UniversalFileUploaderModel-show-file {
+  width: 35%;
+  border-left: 1px solid $color-border;
+}
+.UniversalFileUploaderModel-body {
+  height: 500px;
+  padding: 0px !important;
+  margin: 0px;
+  
 }
 .UniversalFileUploaderModel-model {
   z-index: -500;

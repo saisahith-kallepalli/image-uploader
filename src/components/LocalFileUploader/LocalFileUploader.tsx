@@ -2,9 +2,17 @@ import React, { useRef, useState } from "react";
 import "./LocalFileUploader.scss";
 import uploadImage from "./../../images/upload-cloud.png";
 export type LocalFileUploaderProps = {
-  onUpload: (fileValues: Array<File>) => void;
+  onUpload: (fileValues: any) => void;
   mimeTypes: Array<string>;
-  uploadedFiles: Array<File>;
+  uploadedFiles: Array<
+    | File
+    | {
+        name: string;
+        size: number;
+        location: string;
+        mimeType: string;
+      }
+  >;
 };
 
 export const LocalFileUploader = (props: LocalFileUploaderProps) => {
@@ -17,7 +25,6 @@ export const LocalFileUploader = (props: LocalFileUploaderProps) => {
   };
   const handleDrag = function (e: any) {
     stopReload(e);
-    console.log(e);
     if (e.type === "dragenter" || e.type === "dragover") {
       setDragActive(true);
     } else if (e.type === "dragleave") {
@@ -34,7 +41,6 @@ export const LocalFileUploader = (props: LocalFileUploaderProps) => {
       fileValues = fileValues.filter((value) => mimeTypes.includes(value.type));
       const totalFiles = [...uploadedFiles, ...fileValues];
       onUpload(totalFiles);
-      console.log(fileValues);
     }
   };
   const onChangeUpload = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import localImage from "./../../images/monitor.png";
-import driveImage from "./../../images/icons8-google-drive-color/icons8-google-drive-96.svg";
-import dropboxImage from "./../../images/icons8-dropbox-color/icons8-dropbox-96.svg";
+import driveImage from "./../../images/g-drive.png";
+import dropboxImage from "./../../images/Group 1.png";
 import { UploadTypes } from "../UploadTypes";
 import "./UniversalFileUploaderModal.scss";
 import { LocalFileUploader } from "../LocalFileUploader";
@@ -17,8 +17,8 @@ type Props = {
   header: string;
   mimeTypes: Array<string>;
   allowMultiple: boolean;
-  onUpload: (fileValues: Array<File>) => void;
-  uploadedFiles: Array<File>;
+  onUpload: (fileValues: Array<any>) => void;
+  uploadedFiles: Array<any>;
 };
 
 export const UniversalFileUploaderModal = (props: Props) => {
@@ -32,8 +32,11 @@ export const UniversalFileUploaderModal = (props: Props) => {
     onUpload,
     uploadedFiles,
   } = props;
-  const [typeOfUpload, setTypeOfUpload] =
-    React.useState<string>("localFileUpload");
+  const [typeOfUpload, setTypeOfUpload] = useState<string>("localFileUpload");
+  const [uploading, setUploading] = useState<boolean>(false);
+  const changeUploading = (load: boolean) => {
+    setUploading(load);
+  };
   const selectionType: Array<{
     type: string;
     image: any;
@@ -62,7 +65,6 @@ export const UniversalFileUploaderModal = (props: Props) => {
   };
 
   //change the file
-  console.log(uploadedFiles);
   // stop page reload
 
   // handle drag events
@@ -79,7 +81,7 @@ export const UniversalFileUploaderModal = (props: Props) => {
       <Modal.Header closeButton>
         <Modal.Title>{header}</Modal.Title>
       </Modal.Header>
-      <Modal.Body className="d-flex justify-content-between">
+      <Modal.Body className="d-flex justify-content-between UniversalFileUploaderModel-body">
         <div className="UniversalFileUploaderModel-type-select ">
           <UploadTypes
             selectionType={selectionType}
@@ -87,7 +89,7 @@ export const UniversalFileUploaderModal = (props: Props) => {
             typeOfUpload={typeOfUpload}
           />
         </div>
-        <div className="w-50 h-100">
+        <div className="UniversalFileUploaderModel-selection-file">
           {typeOfUpload === "localFileUpload" ? (
             <LocalFileUploader
               onUpload={onUpload}
@@ -101,11 +103,13 @@ export const UniversalFileUploaderModal = (props: Props) => {
               handleClose={handleClose}
               onUpload={onUpload}
               uploadedFiles={uploadedFiles}
+              changeUploading={changeUploading}
             />
           ) : typeOfUpload === "DropBoxUpload" ? (
             <DropboxFileSelector
               onUpload={onUpload}
               uploadedFiles={uploadedFiles}
+              changeUploading={changeUploading}
             />
           ) : (
             ""
@@ -127,8 +131,12 @@ export const UniversalFileUploaderModal = (props: Props) => {
             uploadedFiles={uploadedFiles}
           /> */}
         </div>
-        <div className="w-25">
-          <ShowUploaded uploadedFiles={uploadedFiles} onUpload={onUpload} />
+        <div className="UniversalFileUploaderModel-show-file">
+          <ShowUploaded
+            uploadedFiles={uploadedFiles}
+            onUpload={onUpload}
+            uploading={uploading}
+          />
         </div>
       </Modal.Body>
 

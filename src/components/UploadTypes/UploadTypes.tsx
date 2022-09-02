@@ -13,11 +13,9 @@ type Props = {
 
 export const UploadTypes = (props: Props) => {
   const { selectionType, onClickChangeTypeOfUpload, typeOfUpload } = props;
-  {
-    console.log(typeOfUpload);
-  }
+  
   return (
-    <div className="d-flex flex-column align-items-center">
+    <div className="upload-type-container ">
       {selectionType.map((item, index) => {
         return (
           <div

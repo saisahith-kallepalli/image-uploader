@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import useDrivePicker from "react-google-drive-picker";
 import { CallbackDoc } from "react-google-drive-picker/dist/typeDefs";
 import { useGoogleApi } from "react-gapi";
-import DriveImage from "./../../images/icons8-google-drive-color/icons8-google-drive-144.svg";
+import DriveImage from "./../../images/g-drive.png";
 import GooglePicker from "react-google-picker";
 import axios from "axios";
 import "./GoogleFileSelector.scss";
@@ -12,30 +12,38 @@ export type GoogleFileSelectorProps = {
   mimeTypes: Array<string>;
   handleOpen: () => void;
   handleClose: () => void;
-  onUpload: (fileValues: Array<File>) => void;
-  uploadedFiles: Array<File>;
+  changeUploading: (load: boolean) => void;
+  onUpload: (fileValues: Array<any>) => void;
+  uploadedFiles: Array<any>;
 };
 export const GoogleFileSelector = (props: GoogleFileSelectorProps) => {
+  const {
+    mimeTypes,
+    handleOpen,
+    handleClose,
+    onUpload,
+    changeUploading,
+    uploadedFiles,
+  } = props;
   const [token, setToken] = useState("");
-  const gapi = useGoogleApi({
-    discoveryDocs: [
-      "https://www.googleapis.com/discovery/v1/apis/drive/v3/rest",
-    ],
-    scopes: [
-      "https://www.googleapis.com/auth/drive.file",
-      "https://www.googleapis.com/auth/drive.metadata",
-    ],
-  });
-  const { mimeTypes, handleOpen, handleClose, onUpload } = props;
+
   const callbackFunction = async (data: any) => {
     if (data.action === "cancel") {
       handleOpen();
-      console.log("User clicked cancel/close button");
     } else if (data.action === "picked") {
-      const response = await fetch(
-        "https://www.googleapis.com/drive/v3/files/" + data.docs[0].id + ".jpg"
+      changeUploading(true);
+      const typeCheck = data.docs.filter((each: CallbackDoc) =>
+        mimeTypes.includes(each.mimeType)
       );
-      const getData = response.json();
+      const getTheRequiredData = typeCheck.map((data: CallbackDoc) => ({
+        name: data.name,
+        size: data.sizeBytes,
+        location: "https://drive.google.com/uc?id=" + data.id,
+        mimeType: data.mimeType,
+      }));
+      changeUploading(false);
+      onUpload([...uploadedFiles, ...getTheRequiredData]);
+      console.log(typeCheck[0]);
       handleOpen();
     } else if (data.action === "loaded") {
       handleClose();
@@ -57,9 +65,7 @@ export const GoogleFileSelector = (props: GoogleFileSelectorProps) => {
           "https://www.googleapis.com/auth/drive.metadata",
         ]}
         onChange={(data: any) => callbackFunction(data)}
-        onAuthenticate={(token: any) =>
-          console.log("oauth token:", setToken(token))
-        }
+        onAuthenticate={(token: any) => setToken(token)}
         onAuthFailed={(data: any) => console.log("on auth failed:", data)}
         multiselect={true}
         navHidden={true}

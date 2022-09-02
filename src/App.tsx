@@ -4,10 +4,10 @@ import UniversalFileUploaderModal from "./components/UniversalFileUploaderModal"
 
 function App() {
   const [show, setShow] = useState<boolean>(false);
-  const [uploadedFiles, setUploadedFiles] = useState<Array<File>>([]);
+  const [uploadedFiles, setUploadedFiles] = useState<Array<any>>([]);
   const handleClose = () => setShow(false);
   const handleOpen = () => setShow(true);
-  const onUpload = (fileValues: Array<File>) => {
+  const onUpload = (fileValues: Array<any>) => {
     setUploadedFiles([...fileValues]);
   };
   return (
