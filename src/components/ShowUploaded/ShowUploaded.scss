@@ -1,5 +1,6 @@
 $color-gray: #98a2b3;
 $color-progress: #f2f4f7;
+$color-text: #667085;
 .show-uploaded-image-size {
   height: 100%;
   width: 96px;
@@ -37,6 +38,7 @@ $color-progress: #f2f4f7;
   padding: 10px;
   h4 {
     color: $color-gray;
+    font-size: 20px;
   }
 }
 .show-uploaded-noImage-Container {
@@ -80,6 +82,16 @@ $color-progress: #f2f4f7;
   align-items: center;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
+}
+.show-uploaded-size-and-percentage {
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  p {
+    color: $color-text;
+    font-size: 14px;
+  }
 }
 .show-uploaded-scrolling {
   width: 100%;

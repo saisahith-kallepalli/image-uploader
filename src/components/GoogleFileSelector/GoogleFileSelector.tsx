@@ -7,7 +7,7 @@ import GooglePicker from "react-google-picker";
 import axios from "axios";
 import "./GoogleFileSelector.scss";
 // import { downloadFile } from "../../download";
-// import { saveAs } from "file-saver";
+import { saveAs } from "file-saver";
 export type GoogleFileSelectorProps = {
   mimeTypes: Array<string>;
   handleOpen: () => void;
@@ -35,10 +35,22 @@ export const GoogleFileSelector = (props: GoogleFileSelectorProps) => {
       const typeCheck = data.docs.filter((each: CallbackDoc) =>
         mimeTypes.includes(each.mimeType)
       );
+      fetch(
+        "https://drive.google.com/uc?export=drive&id=" + typeCheck[0].id,
+        {
+          method: "GET",
+          mode: "no-cors",
+        }
+      ).then((response) => console.log(response.blob()));
+      // saveAs(
+      //   `https://drive.google.com/uc?export=download&id=${typeCheck[0].id}`,
+      //   "name "
+      // );
+
       const getTheRequiredData = typeCheck.map((data: CallbackDoc) => ({
         name: data.name,
         size: data.sizeBytes,
-        location: "https://drive.google.com/uc?id=" + data.id,
+        location: "https://drive.google.com/uc?export=view&id=" + data.id,
         mimeType: data.mimeType,
       }));
       changeUploading(false);

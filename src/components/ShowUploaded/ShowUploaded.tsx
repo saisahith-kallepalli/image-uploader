@@ -38,7 +38,7 @@ export const ShowUploaded = (props: ShowUploadedProps) => {
       setNumber(0);
     }
   }, [uploading]);
-  console.log(uploading, number);
+  console.log(uploadedFiles);
   return (
     <div className="show-uploaded-main-container">
       <h4>Selected files ({uploadedFiles.length})</h4>
@@ -83,6 +83,10 @@ export const ShowUploaded = (props: ShowUploadedProps) => {
               <div className="show-uploaded-progressBar ">
                 <ProgressBarLoading color="#08A742" number={100} />
               </div>
+              <div className="show-uploaded-size-and-percentage">
+                <p>{(each.size / (1024 * 1024)).toFixed(2)} MB</p>
+                <p>completed</p>
+              </div>
             </div>
           </div>
         ))}
@@ -108,6 +112,10 @@ export const ShowUploaded = (props: ShowUploadedProps) => {
               </div>
               <div className="show-uploaded-progressBar ">
                 <ProgressBarLoading color="#08A742" number={number} />
+              </div>
+              <div className="show-uploaded-size-and-percentage">
+                <p>{}</p>
+                <p>{number}%</p>
               </div>
             </div>
           </div>
