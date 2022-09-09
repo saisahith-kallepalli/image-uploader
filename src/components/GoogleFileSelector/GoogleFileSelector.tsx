@@ -35,13 +35,7 @@ export const GoogleFileSelector = (props: GoogleFileSelectorProps) => {
       const typeCheck = data.docs.filter((each: CallbackDoc) =>
         mimeTypes.includes(each.mimeType)
       );
-      fetch(
-        "https://drive.google.com/uc?export=drive&id=" + typeCheck[0].id,
-        {
-          method: "GET",
-          mode: "no-cors",
-        }
-      ).then((response) => console.log(response.blob()));
+      console.log(data);
       // saveAs(
       //   `https://drive.google.com/uc?export=download&id=${typeCheck[0].id}`,
       //   "name "
@@ -73,8 +67,7 @@ export const GoogleFileSelector = (props: GoogleFileSelectorProps) => {
         }
         developerKey={"AIzaSyDn9U-rJaV-RdyJRXVIwaGwPwbRQWwC-gQ"}
         scope={[
-          "https://www.googleapis.com/auth/drive.file",
-          "https://www.googleapis.com/auth/drive.metadata",
+          "https://www.googleapis.com/auth/drive"
         ]}
         onChange={(data: any) => callbackFunction(data)}
         onAuthenticate={(token: any) => setToken(token)}
