@@ -5,6 +5,9 @@ import UniversalFileUploaderModal from "./components/UniversalFileUploaderModal"
 function App() {
   const [show, setShow] = useState<boolean>(false);
   const [uploadedFiles, setUploadedFiles] = useState<Array<any>>([]);
+  //* handleClose to SetShow to false
+  //* handleOpen to SetShow to true
+  //* onUpload to setUploadedFiles which is uploaded and removed files
   const handleClose = () => setShow(false);
   const handleOpen = () => setShow(true);
   const onUpload = (fileValues: Array<any>) => {

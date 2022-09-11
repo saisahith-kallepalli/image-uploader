@@ -23,6 +23,8 @@ export const LocalFileUploader = (props: LocalFileUploaderProps) => {
     e.stopPropagation();
     e.nativeEvent.preventDefault();
   };
+
+  //* handleDrag to setDragActive to true or false so we can check wether dragenter ot dragleave
   const handleDrag = function (e: any) {
     stopReload(e);
     if (e.type === "dragenter" || e.type === "dragover") {
@@ -31,7 +33,8 @@ export const LocalFileUploader = (props: LocalFileUploaderProps) => {
       setDragActive(false);
     }
   };
-  // triggers when file is dropped
+
+  // * handleDrop to get the files which or dropped and check whether its valid "mimeTypes" or not and the dropped files going to upload them by using onUpload Function 
   const handleDrop = function (e: React.DragEvent<HTMLDivElement>) {
     stopReload(e);
     setDragActive(false);
@@ -43,6 +46,8 @@ export const LocalFileUploader = (props: LocalFileUploaderProps) => {
       onUpload(totalFiles);
     }
   };
+
+  //* onChangeUpload to Select the files directly from localFiles to upload them by using onUpload Function 
   const onChangeUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     stopReload(e);
     const files = e.target.files || { value: "" };

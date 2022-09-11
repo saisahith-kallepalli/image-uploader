@@ -17,6 +17,11 @@ export const DropboxFileSelector = (props: DropboxFileSelectorProps) => {
     const file = new File([blob], name, { type: blob.type });
     return file;
   };
+
+  /*
+   *this is "use-dropbox-chooser" form that imported useDropboxChooser get "apiKey" from developer mode
+   *in dropbox from that getting the image like and converted in to file object and uploaded the File by using onUpload function which is available at "DropboxFileSelectorProps"
+   */
   const { open, isOpen } = useDropboxChooser({
     appKey: "0msihfpamms1o00",
     chooserOptions: { linkType: "direct", multiselect: true },

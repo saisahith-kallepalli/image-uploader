@@ -11,9 +11,10 @@ type Props = {
   onClickChangeTypeOfUpload: (type: string) => void;
 };
 
+//Based on Selection Type it will map them and onClickChangeTypeOfUpload we will set the Type of Upload typeOfUpload
 export const UploadTypes = (props: Props) => {
   const { selectionType, onClickChangeTypeOfUpload, typeOfUpload } = props;
-  
+
   return (
     <div className="upload-type-container ">
       {selectionType.map((item, index) => {

@@ -9,7 +9,7 @@ import { LocalFileUploader } from "../LocalFileUploader";
 import { ShowUploaded } from "../ShowUploaded";
 import { GoogleFileSelector } from "../GoogleFileSelector";
 import { DropboxFileSelector } from "../DropboxFileSelector";
-type Props = {
+export type UniversalFileUploaderProps = {
   show: boolean;
   handleClose: () => void;
   handleOpen: () => void;
@@ -21,7 +21,9 @@ type Props = {
   uploadedFiles: Array<any>;
 };
 
-export const UniversalFileUploaderModal = (props: Props) => {
+export const UniversalFileUploaderModal = (
+  props: UniversalFileUploaderProps
+) => {
   const {
     show,
     handleClose,
@@ -37,6 +39,7 @@ export const UniversalFileUploaderModal = (props: Props) => {
   const changeUploading = (load: boolean) => {
     setUploading(load);
   };
+
   const selectionType: Array<{
     type: string;
     image: any;
@@ -60,14 +63,11 @@ export const UniversalFileUploaderModal = (props: Props) => {
       title: "Drop Box",
     },
   ];
+
+  // By click on type of uploading it will setTypeOfUpload the type according to top Object "SelectionType"
   const onClickChangeTypeOfUpload = (type: string) => {
     setTypeOfUpload(type);
   };
-
-  //change the file
-  // stop page reload
-
-  // handle drag events
 
   return (
     <Modal
@@ -114,22 +114,6 @@ export const UniversalFileUploaderModal = (props: Props) => {
           ) : (
             ""
           )}
-          {/* <LocalFileUploader
-            onUpload={onUpload}
-            mimeTypes={mimeTypes}
-            uploadedFiles={uploadedFiles}
-          /> */}
-          {/* <GoogleFileSelector
-            mimeTypes={mimeTypes}
-            handleOpen={handleOpen}
-            handleClose={handleClose}
-            onUpload={onUpload}
-            uploadedFiles={uploadedFiles}
-          /> */}
-          {/* <DropboxFileSelector
-            onUpload={onUpload}
-            uploadedFiles={uploadedFiles}
-          /> */}
         </div>
         <div className="UniversalFileUploaderModel-show-file">
           <ShowUploaded
