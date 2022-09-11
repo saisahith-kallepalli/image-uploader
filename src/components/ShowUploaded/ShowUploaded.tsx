@@ -23,8 +23,6 @@ export const ShowUploaded = (props: ShowUploadedProps) => {
     const UnRemovedFiles = uploadedFiles.filter(
       (each: any, indexEach: number) => index !== indexEach
     );
-    console.log(index);
-    console.log(UnRemovedFiles);
     onUpload(UnRemovedFiles);
   };
 
@@ -42,7 +40,6 @@ export const ShowUploaded = (props: ShowUploadedProps) => {
       setNumber(0);
     }
   }, [uploading]);
-  console.log(uploadedFiles);
 
   return (
     <div className="show-uploaded-main-container">

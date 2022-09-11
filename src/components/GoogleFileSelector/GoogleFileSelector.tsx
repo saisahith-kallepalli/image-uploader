@@ -34,7 +34,6 @@ export const GoogleFileSelector = (props: GoogleFileSelectorProps) => {
       const typeCheck = data.docs.filter((each: any) =>
         mimeTypes.includes(each.mimeType)
       );
-      console.log(data);
 
       const getTheRequiredData = typeCheck.map((data: any) => ({
         name: data.name,
@@ -44,7 +43,6 @@ export const GoogleFileSelector = (props: GoogleFileSelectorProps) => {
       }));
       changeUploading(false);
       onUpload([...uploadedFiles, ...getTheRequiredData]);
-      console.log(typeCheck[0]);
       handleOpen();
     } else if (data.action === "loaded") {
       handleClose();
@@ -61,7 +59,6 @@ export const GoogleFileSelector = (props: GoogleFileSelectorProps) => {
         scope={["https://www.googleapis.com/auth/drive"]}
         onChange={(data: any) => callbackFunction(data)}
         onAuthenticate={(token: any) => setToken(token)}
-        onAuthFailed={(data: any) => console.log("on auth failed:", data)}
         multiselect={true}
         navHidden={true}
         authImmediate={false}
