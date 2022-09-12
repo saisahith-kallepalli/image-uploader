@@ -4,6 +4,7 @@ import uploadImage from "./../../images/upload-cloud.png";
 export type LocalFileUploaderProps = {
   onUpload: (fileValues: any) => void;
   mimeTypes: Array<string>;
+  allowMultiple: boolean;
   uploadedFiles: Array<
     | File
     | {
@@ -16,7 +17,7 @@ export type LocalFileUploaderProps = {
 };
 
 export const LocalFileUploader = (props: LocalFileUploaderProps) => {
-  const { onUpload, mimeTypes, uploadedFiles } = props;
+  const { onUpload, mimeTypes, uploadedFiles, allowMultiple } = props;
   const fileInputRef = useRef<HTMLInputElement>();
   const [dragActive, setDragActive] = useState<boolean>(false);
   const stopReload = (e: any) => {
@@ -34,7 +35,7 @@ export const LocalFileUploader = (props: LocalFileUploaderProps) => {
     }
   };
 
-  // * handleDrop to get the files which or dropped and check whether its valid "mimeTypes" or not and the dropped files going to upload them by using onUpload Function 
+  // * handleDrop to get the files which or dropped and check whether its valid "mimeTypes" or not and the dropped files going to upload them by using onUpload Function
   const handleDrop = function (e: React.DragEvent<HTMLDivElement>) {
     stopReload(e);
     setDragActive(false);
@@ -47,7 +48,7 @@ export const LocalFileUploader = (props: LocalFileUploaderProps) => {
     }
   };
 
-  //* onChangeUpload to Select the files directly from localFiles to upload them by using onUpload Function 
+  //* onChangeUpload to Select the files directly from localFiles to upload them by using onUpload Function
   const onChangeUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     stopReload(e);
     const files = e.target.files || { value: "" };
@@ -71,7 +72,7 @@ export const LocalFileUploader = (props: LocalFileUploaderProps) => {
           title="any"
           id="file-upload"
           accept={mimeTypes.join(",")}
-          multiple={true}
+          multiple={allowMultiple}
           className="d-none"
           onChange={onChangeUpload}
         />
@@ -79,4 +80,18 @@ export const LocalFileUploader = (props: LocalFileUploaderProps) => {
       </label>
     </div>
   );
+};
+LocalFileUploader.defaultProps = {
+  type: "file",
+  mimeTypes: [
+    "image/png",
+    "image/jpg",
+    "image/jpeg",
+    "image/gif",
+    "image/svg+xml",
+    "image/svg",
+  ],
+  allowMultiple: false,
+  maxSize: 5,
+  disabled: false,
 };

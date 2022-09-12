@@ -5,11 +5,12 @@ import "./DropboxFileSelector.scss";
 export type DropboxFileSelectorProps = {
   onUpload: (fileValues: Array<any>) => void;
   uploadedFiles: Array<any>;
+  allowMultiple: boolean;
   changeUploading: (load: boolean) => void;
 };
 
 export const DropboxFileSelector = (props: DropboxFileSelectorProps) => {
-  const { onUpload, uploadedFiles, changeUploading } = props;
+  const { onUpload, uploadedFiles, changeUploading, allowMultiple } = props;
   const urlToObject = async (image: string, name: string) => {
     const response = await fetch(image);
     // here image is url/location of image
@@ -24,7 +25,7 @@ export const DropboxFileSelector = (props: DropboxFileSelectorProps) => {
    */
   const { open, isOpen } = useDropboxChooser({
     appKey: "0msihfpamms1o00",
-    chooserOptions: { linkType: "direct", multiselect: true },
+    chooserOptions: { linkType: "direct", multiselect: allowMultiple },
     onSelected: async (files) => {
       changeUploading(true);
       let Data = [];
@@ -49,4 +50,17 @@ export const DropboxFileSelector = (props: DropboxFileSelectorProps) => {
       </button>
     </div>
   );
+};
+DropboxFileSelector.defaultProps = {
+  type: "file",
+  mimeTypes: [
+    "image/png",
+    "image/jpg",
+    "image/jpeg",
+    "image/gif",
+    "image/svg+xml",
+    "image/svg",
+  ],
+  allowMultiple: false,
+  maxSize: 5,
 };

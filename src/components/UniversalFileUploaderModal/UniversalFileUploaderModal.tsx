@@ -31,6 +31,7 @@ export const UniversalFileUploaderModal = (
     size,
     header,
     mimeTypes,
+    allowMultiple,
     onUpload,
     uploadedFiles,
   } = props;
@@ -92,12 +93,14 @@ export const UniversalFileUploaderModal = (
         <div className="UniversalFileUploaderModel-selection-file">
           {typeOfUpload === "localFileUpload" ? (
             <LocalFileUploader
+              allowMultiple={allowMultiple}
               onUpload={onUpload}
               mimeTypes={mimeTypes}
               uploadedFiles={uploadedFiles}
             />
           ) : typeOfUpload === "GoogleDriveUpload" ? (
             <GoogleFileSelector
+              allowMultiple={allowMultiple}
               mimeTypes={mimeTypes}
               handleOpen={handleOpen}
               handleClose={handleClose}
@@ -107,6 +110,7 @@ export const UniversalFileUploaderModal = (
             />
           ) : typeOfUpload === "DropBoxUpload" ? (
             <DropboxFileSelector
+              allowMultiple={allowMultiple}
               onUpload={onUpload}
               uploadedFiles={uploadedFiles}
               changeUploading={changeUploading}
@@ -132,4 +136,19 @@ export const UniversalFileUploaderModal = (
       </Modal.Footer>
     </Modal>
   );
+};
+UniversalFileUploaderModal.defaultProps = {
+  type: "file",
+  mimeTypes: [
+    "image/png",
+    "image/jpg",
+    "image/jpeg",
+    "image/gif",
+    "image/svg+xml",
+    "image/svg",
+  ],
+  allowMultiple: false,
+  maxSize: 5,
+  disabled: false,
+  size: "xl",
 };

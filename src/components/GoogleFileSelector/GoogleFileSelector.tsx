@@ -4,6 +4,7 @@ import GooglePicker from "react-google-picker";
 import "./GoogleFileSelector.scss";
 export type GoogleFileSelectorProps = {
   mimeTypes: Array<string>;
+  allowMultiple: boolean;
   handleOpen: () => void;
   handleClose: () => void;
   changeUploading: (load: boolean) => void;
@@ -16,6 +17,7 @@ export const GoogleFileSelector = (props: GoogleFileSelectorProps) => {
     handleOpen,
     handleClose,
     onUpload,
+    allowMultiple,
     changeUploading,
     uploadedFiles,
   } = props;
@@ -59,7 +61,7 @@ export const GoogleFileSelector = (props: GoogleFileSelectorProps) => {
         scope={["https://www.googleapis.com/auth/drive"]}
         onChange={(data: any) => callbackFunction(data)}
         onAuthenticate={(token: any) => setToken(token)}
-        multiselect={true}
+        multiselect={allowMultiple}
         navHidden={true}
         authImmediate={false}
         mimeTypes={["image/png", "image/jpeg", "image/jpg"]}
@@ -73,4 +75,17 @@ export const GoogleFileSelector = (props: GoogleFileSelectorProps) => {
       </GooglePicker>
     </div>
   );
+};
+GoogleFileSelector.defaultProps = {
+  type: "file",
+  mimeTypes: [
+    "image/png",
+    "image/jpg",
+    "image/jpeg",
+    "image/gif",
+    "image/svg+xml",
+    "image/svg",
+  ],
+  allowMultiple: false,
+  maxSize: 5,
 };
