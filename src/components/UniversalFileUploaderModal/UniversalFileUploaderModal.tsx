@@ -69,11 +69,14 @@ export const UniversalFileUploaderModal = (
   const onClickChangeTypeOfUpload = (type: string) => {
     setTypeOfUpload(type);
   };
-
+  const closeModel = () => {
+    handleClose();
+    onUpload([]);
+  };
   return (
     <Modal
       show={show}
-      onHide={handleClose}
+      onHide={closeModel}
       size={size}
       animation={false}
       backdrop="static"
@@ -129,10 +132,10 @@ export const UniversalFileUploaderModal = (
       </Modal.Body>
 
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
+        <Button variant="secondary" onClick={closeModel}>
           Close
         </Button>
-        <Button variant="primary">Done</Button>
+        <Button variant="success">Done</Button>
       </Modal.Footer>
     </Modal>
   );
